@@ -50,6 +50,13 @@ $container['logger'] = function ($c) {
     return $logger;
 };
 
+$container['notFoundHandler'] = function ($c) {
+    return new App\Libs\NotFoundHandler($c->get('view'), function ($request, $response) use ($c) {
+        return $c['response']
+            ->withStatus(404);
+    });
+};
+
 // -----------------------------------------------------------------------------
 // Controller factories
 // -----------------------------------------------------------------------------
