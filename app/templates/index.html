@@ -1,0 +1,135 @@
+{% extends 'layout.html' %}
+{% block content %}
+{#{% block content_with_slider %}#}
+    {#<pre>{{ dump(news) }}</pre>#}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="left-sidebar">
+                        {#{{ "left-sidebar"|get_sidebar(route)|safe }}#}
+                        {% include 'left_sidebar.html' %}
+                    </div>
+                </div>
+
+                <div class="col-sm-9 padding-right">
+
+                    {% if slider %}
+                        <div class="category-tab"><!--category-tab-->
+                            <div class="col-sm-12">
+                                <ul class="nav nav-tabs">
+                                    {% if news %}
+                                        <li class="active"><a href="#leatherman" data-toggle="tab">Sản phẩm mới</a>
+                                        </li>{% endif %}
+                                    {% if olds %}
+                                        <li><a href="#wenger" data-toggle="tab">Sản phẩm cũ</a></li>{% endif %}
+                                </ul>
+                            </div>
+                            <div class="tab-content">
+
+                                {% if news %}
+                                    <div class="tab-pane fade active in" id="leatherman">
+                                        {% for product in news %}
+                                            <div class="col-sm-3">
+                                                <div class="product-image-wrapper">
+                                                    <div class="single-products">
+                                                        <div class="productinfo text-center">
+                                                            <div style="height: 150px">
+                                                                <img class="cate_img_tag" id="{{ product.id }}"
+                                                                     src="{{ product.image }}" alt=""/>
+                                                            </div>
+
+                                                                <h2>{{ product.price | number_format ~ " đ" }}</h2>
+
+                                                            <p id="{{ product.id }}">{{ product.title|title_length(20,'...',false) }}</p>
+                                                            <a href="javascript:add_cart({{ product.id }})"
+                                                               class="btn btn-default add-to-cart"><i
+                                                                        class="fa fa-shopping-cart"></i>Cho vào giỏ hàng</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+
+                                {% if olds %}
+                                    <div class="tab-pane fade" id="wenger">
+                                        {% for product in olds %}
+                                            <div class="col-sm-3">
+                                                <div class="product-image-wrapper">
+                                                    <div class="single-products">
+                                                        <div class="productinfo text-center">
+                                                            <div style="height: 150px">
+                                                                <img id="{{ product.id }}" class="cate_img_tag"
+                                                                     src="{{ product.image }}" alt=""/>
+                                                            </div>
+
+                                                                <h2>{{ product.price | number_format ~ " đ" }}</h2>
+
+                                                            <p id="{{ product.id }}">{{ product.title|title_length(22,'...',false) }}</p>
+                                                            <a href="javascript:add_cart({{ product.id }})"
+                                                               class="btn btn-default add-to-cart"><i
+                                                                        class="fa fa-shopping-cart"></i>Cho vào giỏ hàng</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                        </div><!--/category-tab-->
+                    {% endif %}
+
+                    <!--features_items-->
+                    {% if products %}
+                        <div class="features_items">
+
+                            <h2 class="title text-center">Sản phẩm</h2>
+
+                            {% for product in products %}
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center" id="{{ product.id }}">
+                                                <div style="height: 249px">
+                                                    <img class="feat_img_tag" src="{{ product.image }}"
+                                                         id="{{ product.id }}"/>
+                                                </div>
+
+                                                    <h2>{{ product.price | number_format ~ " đ" }}</h2>
+
+                                                <p id="{{ product.id }}">{{ product.title|title_length(27,'...',false) }}</p>
+                                                <a href="javascript:add_cart({{ product.id }})"
+                                                   class="btn btn-default add-to-cart"><i
+                                                            class="fa fa-shopping-cart"></i>Cho vào giỏ hàng</a>
+                                            </div>
+                                            <div class="product-overlay">
+                                                <div class="overlay-content" id="{{ product.id }}">
+
+                                                            <h2>{{ product.price | number_format ~ " đ" }}</h2>
+
+                                                    <p id="{{ product.id }}">{{ product.detail | title_length(300,'...',false) | raw }}</p>
+                                                    <a href="javascript:add_cart({{ product.id }})"
+                                                       class="btn btn-default add-to-cart"><i
+                                                                class="fa fa-shopping-cart"></i>Cho vào giỏ hàng</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <!-- /features_items-->
+
+                    <!-- using widgets  -->
+                    {% include '/widgets/recommend.html' %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
