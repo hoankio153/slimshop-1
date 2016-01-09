@@ -64,15 +64,15 @@
     //add event to handler click to view product detail
     $(document).ready(function () {
         $(".productinfo div img").on("click", function () {
-            window.location.href = '/product/' + this.id;
+            window.location.href = '/product/' + $(this).data('slug'); //*
 //            window.location.href = '/product/detail/' + this.id;
         });
         $('.overlay-content img').on("click", function () {
-            window.location.href = '/product/' + this.id;
+            window.location.href = '/product/' + $(this).data('slug');
 //            window.location.href = '/product/detail/' + this.id;
         });
         $('.overlay-content p').on("click", function () {
-            window.location.href = '/product/' + this.id;
+            window.location.href = '/product/' + $(this).data('slug');
 //            window.location.href = '/product/detail/' + this.id;
         });
     });

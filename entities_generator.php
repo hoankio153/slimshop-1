@@ -11,12 +11,12 @@ $config->setMetadataCacheImpl(new \Doctrine\Common\Cache\ArrayCache);
 $config->setProxyDir(__DIR__ . '/Proxies');
 $config->setProxyNamespace('Proxies');
 $connectionParams = array(
-    'driver' => 'pdo_mysql',
-    'host' => '127.0.0.1',
-    'port' => '8889',
-    'user' => 'root',
-    'password' => 'root',
-    'dbname' => 'blog',
+    'driver' => 'pdo_pgsql',
+    'host' => 'localhost',
+    'port' => '5432',
+    'user' => 'tranquochoan',
+    'password' => '',
+    'dbname' => 'shop',
     'charset' => 'utf8',
 );
 $em = \Doctrine\ORM\EntityManager::create($connectionParams, $config);

@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Model;
 
+namespace App\Model;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -55,7 +55,7 @@ class Users
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
-    private $createdAt;
+    private $createdAt = 'now()';
 
 
     /**
@@ -171,9 +171,9 @@ class Users
      *
      * @return Users
      */
-    public function setCreatedAt()
+    public function setCreatedAt($createdAt)
     {
-        $this->createdAt = new \DateTime("now");
+        $this->createdAt = $createdAt;
 
         return $this;
     }
