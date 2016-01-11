@@ -51,8 +51,10 @@ final class ShopController extends BaseController
     public function productCategoryAction(Request $request, Response $response, $args)
     {
         try {
+            $cat = $this->em->getRepository('App\Model\Categories')->findOneBy(['slug'=>$args['slug']]);
+
             //select * from products where                                    cagtegory=... order by id desc limit 23 offset 0;
-            $category = $this->em->getRepository('App\Model\Products')->findBy(['category' => $args['category']],['id'=>'DESC'],23,0);
+            $category = $this->em->getRepository('App\Model\Products')->findBy(['category'=> $cat->getId() ],['id'=>'DESC'],23,0);
 
 
 
@@ -64,6 +66,8 @@ final class ShopController extends BaseController
 
         $this->view->render($response, 'product/product.html',[
             'products' => $category,
+          //'cat'=> $cat->getTitle()
+            'cat'=>$cat
 
         ]);
         return $response;

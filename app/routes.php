@@ -8,7 +8,7 @@ $app->get('/product', 'App\Controller\ShopController:productAction');
 
 $app->get('/product/{slug}', 'App\Controller\ShopController:productDetailAction');
 
-$app->get('/product/category/{category}','App\Controller\ShopController:productCategoryAction');
+$app->get('/product/category/{slug}','App\Controller\ShopController:productCategoryAction');
 
 
 
